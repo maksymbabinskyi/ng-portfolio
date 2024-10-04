@@ -1,0 +1,63 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-6">
+      <mat-form-field class="w-100">
+        <textarea
+          matInput
+          [(ngModel)]="test.question"
+          placeholder="Question"
+          rows="10"
+        ></textarea>
+      </mat-form-field>
+    </div>
+    <div class="col-6">
+      <mat-form-field class="w-100">
+        <textarea
+          matInput
+          [(ngModel)]="test.answer"
+          placeholder="Answer"
+          rows="5"
+        ></textarea>
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="add()">Add</button>
+    </div>
+    <div class="col-12 pt-3">
+      <mat-card class="w-100">
+        <table mat-table [dataSource]="dataSource" class="w-100">
+          <ng-container matColumnDef="question">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Question</th>
+            <td mat-cell *matCellDef="let element">
+              <pre class="text-white">{{ element.question }}</pre>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="answer">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Answer</th>
+            <td mat-cell *matCellDef="let element">
+              <pre class="text-white">{{ element.answer }}</pre>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header width="150">
+              Action
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <button
+                mat-mini-fab
+                color="primary"
+                class="mr-2"
+                (click)="edit(element)"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-mini-fab color="warn" (click)="delete(element)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </mat-card>
+    </div>
+  </div>
+</div>

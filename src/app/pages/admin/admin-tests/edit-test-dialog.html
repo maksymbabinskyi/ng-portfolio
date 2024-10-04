@@ -1,0 +1,31 @@
+<h1 mat-dialog-title class="text-center">{{title}}</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content class="my-3">
+  <div class="row">
+    <div class="col-12">
+      <mat-form-field class="w-100">
+        <textarea
+          matInput
+          [(ngModel)]="test.question"
+          placeholder="Question"
+        ></textarea>
+      </mat-form-field>
+    </div>
+    <div class="col-12">
+      <mat-form-field class="w-100">
+        <textarea
+          matInput
+          rows="10"
+          [(ngModel)]="test.answer"
+          placeholder="Answer"
+        ></textarea>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions class="justify-content-between">
+  <button mat-button color="warn" (click)="onNoClick()">Cancel</button>
+  <button mat-button color="accent" [mat-dialog-close]="test" cdkFocusInitial>
+    Ok
+  </button>
+</div>

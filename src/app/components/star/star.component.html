@@ -1,0 +1,6 @@
+<div class="text-danger">
+    <ng-container *ngFor="let s of stars">
+        <mat-icon *ngIf="s > star" (click)="setStar(s)" [class.cursor-pointer]="clickable">star_outline</mat-icon>
+        <mat-icon *ngIf="s <= star" (click)="setStar(s)" [class.cursor-pointer]="clickable">star</mat-icon>
+    </ng-container>
+</div>

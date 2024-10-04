@@ -1,0 +1,44 @@
+<mat-card class="shadow-lg chat-window" *ngIf="isOpened">
+    <mat-card-header class="justify-content-center" *ngIf="emailSubmitted">
+        <mat-card-title class="text-white">Live Chat</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="border w-100 chat-content rounded p-2" *ngIf="emailSubmitted" id="chatContent">
+            <p class="text-center m-0">Let's discuss about your project in detail.</p>
+            <div class="message-item" [class.sender]="m.sender === 'customer'" [class.receiver]="m.sender === 'admin'" *ngFor="let m of messages">
+                <span class="message">{{m.message}}</span>
+                <p class="name">{{m.sender === 'admin' ? 'Admin' : 'You'}}</p>
+                <p class="time">{{getTime(m.time)}}</p>
+            </div>
+        </div>
+        <div class="text-center text-white" *ngIf="!emailSubmitted">
+            <h5 class="text-center mt-3">Welcome to <i>FullStacker</i></h5>
+            <mat-form-field class="w-100 mt-3 text-white">
+                <mat-label class="text-light">What is your email address?</mat-label>
+                <input matInput class="text-white" type="email" [(ngModel)]="email">
+            </mat-form-field>
+            <div class="d-flex justify-content-center py-3" *ngIf="loading">
+                <mat-spinner [diameter]="40"></mat-spinner>
+            </div>
+            <button mat-raised-button color="default" (click)="submit()" [disabled]="!validateEmail(email)">Continue</button>
+        </div>
+    </mat-card-content>
+    <mat-card-actions *ngIf="emailSubmitted" class="justify-content-around d-flex border-top align-items-center">
+        <mat-form-field class="w-100">
+            <mat-label class="text-light">Type here</mat-label>
+            <textarea matInput
+                class="text-white"
+                [(ngModel)]="message"
+                (keyup.enter)="sendMessage()"
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="5"></textarea>
+        </mat-form-field>
+        <button mat-mini-fab color="basic" class="ml-2" (click)="sendMessage()"><mat-icon>send</mat-icon></button>
+    </mat-card-actions>
+</mat-card>
+<div class="d-flex justify-content-end mt-2">
+    <button mat-fab color="primary" *ngIf="!isOpened" (click)="openChat()"><mat-icon>chat</mat-icon></button>
+    <button mat-fab color="warn" *ngIf="isOpened" (click)="openChat()"><mat-icon>close</mat-icon></button>
+</div>

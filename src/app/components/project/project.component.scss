@@ -1,0 +1,65 @@
+:host {
+  display: block;
+  height: 100%;
+}
+mat-card {
+  padding: 0 !important;
+  padding-bottom: 60% !important;
+  background-size: cover !important;
+  background-position-x: center !important;
+  cursor: pointer;
+  position: relative !important;
+  border-radius: 8px !important;
+  overflow: hidden;
+  &:hover {
+    .content-container {
+      animation: showCardContent 0.2s linear forwards !important;
+    }
+    .background-image {
+      animation: scaleImage 0.2s linear forwards !important;
+    }
+  }
+}
+.background-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.content-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(360deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: 8px;
+}
+video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  border-radius: 8px;
+}
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.title {
+  font-weight: bold;
+  font-size: 20px;
+  text-shadow: 1px 1px 15px #000;
+}
+@keyframes scaleImage {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}

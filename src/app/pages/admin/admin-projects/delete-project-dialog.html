@@ -1,0 +1,12 @@
+<h1 mat-dialog-title class="text-center">{{title}}</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content class="my-3">
+  <p class="m-0">Do you want to delete?</p>
+</div>
+<mat-divider></mat-divider>
+<div mat-dialog-actions class="justify-content-between">
+  <button mat-button color="accent" (click)="onNoClick()">No</button>
+  <button mat-button color="warn" [mat-dialog-close]="true" cdkFocusInitial>
+    Yes
+  </button>
+</div>

@@ -1,0 +1,20 @@
+<h3 class="mb-4" *ngIf="reviews.length > 0">Reviews</h3>
+<div>
+    <div *ngFor="let r of reviews" class="d-flex justify-content-between border-bottom pt-3">
+        <app-star [star]="r.star"></app-star>
+        <h5 class="mx-3 flex-1"><i>{{r.comment}}</i></h5>
+        <div class="reviewer">
+            <p class="mb-1">{{r.email}}</p>
+            <p>{{getDate(r.time)}}</p>
+        </div>
+    </div>
+</div>
+<div class="review-form mt-5 mb-5" *ngIf="user">
+    <p>Please give a review to improve this website. Thanks.</p>
+    <app-star (set)="setStar($event)" [star]="star" [clickable]="true"></app-star>
+    <mat-form-field class="w-100">
+        <mat-label>Comment</mat-label>
+        <textarea matInput [(ngModel)]="comment"></textarea>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="save()">Submit</button>
+</div>

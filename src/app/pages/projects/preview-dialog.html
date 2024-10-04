@@ -1,0 +1,41 @@
+<div class="container-fluid h-100">
+  <div class="row h-100">
+    <div
+      class="col-12 col-md-3 d-flex flex-column justify-content-center text-white"
+    >
+      <h2 class="text-center mb-4 text-warning">{{data.title}}</h2>
+      <h4>Skills:</h4>
+      <p class="m-0 skills">
+        <span
+          *ngFor="let s of data.skills"
+          class="badge badge-pill badge-success mx-1"
+          >{{getSkill(s)?.title}}</span
+        >
+      </p>
+      <h4 class="mt-4">Overview:</h4>
+      <p class="description">{{data.description}}</p>
+    </div>
+    <div class="col-12 col-md-9 h-100">
+      <carousel
+        class="h-100 rounded"
+        [cellWidth]="'100%'"
+        arrowsTheme="dark"
+        [autoplay]="false"
+        [autoplayInterval]="2000"
+        [dots]="true"
+        [pauseOnHover]="true"
+      >
+        <div class="carousel-cell" *ngFor="let image of data.images">
+          <img [src]="image" />
+        </div>
+      </carousel>
+    </div>
+  </div>
+</div>
+
+<button
+  mat-icon-button
+  class="position-absolute btn-close"
+  color="warn"
+  (click)="close()"
+></button>

@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-sm navbar-dark fixed-top shadow px-3">
+  <a class="navbar-brand py-0" routerLink="/projects">
+    <img src="assets/imgs/logo.png" height="38" />
+  </a>
+  <ul class="navbar-nav flex-row">
+    <li class="nav-item" [class.active]="router.url.startsWith('/projects')">
+      <a class="nav-link" routerLink="/projects">Projects</a>
+    </li>
+    <li
+      class="nav-item ml-3 ml-sm-0"
+      [class.active]="router.url.startsWith('/games')"
+    >
+      <a class="nav-link" routerLink="/games">Games</a>
+    </li>
+    <li
+      class="nav-item ml-3 ml-sm-0"
+      [class.active]="router.url.startsWith('/contact-me')"
+    >
+      <a class="nav-link" routerLink="/contact-me">Contact Me</a>
+    </li>
+    <li
+      *ngIf="auth"
+      class="nav-item ml-3 ml-sm-0"
+      [class.active]="router.url.startsWith('/qas')"
+    >
+      <a class="nav-link" routerLink="/qas">QAs</a>
+    </li>
+    <li
+      *ngIf="auth"
+      class="nav-item ml-3 ml-sm-0"
+      [class.active]="router.url.startsWith('/tests')"
+    >
+      <a class="nav-link" routerLink="/tests">Tests</a>
+    </li>
+  </ul>
+  <button
+    mat-raised-button
+    color="warn"
+    class="ml-auto"
+    (click)="logout()"
+    *ngIf="auth"
+  >
+    Logout
+  </button>
+</nav>
+
+<div class="app-container">
+  <router-outlet></router-outlet>
+</div>
+
+<app-chat></app-chat>
